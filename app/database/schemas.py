@@ -1,6 +1,5 @@
 from decimal import Decimal
-from pydantic import BaseModel, ConfigDict
-from typing import Optional
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 """
 class ItemCreate(BaseModel):
@@ -29,9 +28,36 @@ class ItemRead(ItemBase):
 
 
 class ItemUpdate(BaseModel):
-    name: Optional[str] = None
-    price: Optional[Decimal] = None
-    weight: Optional[float] = None
-    description: Optional[str] = None
-    quantity_in_stock: Optional[int] = None
+    name: str | None = None
+    price: Decimal | None = None
+    weight: float | None = None
+    description: str | None = None
+    quantity_in_stock: int | None = None
+    model_config = ConfigDict(from_attributes=True)
+
+    # user schemas
+
+class UserBase(BaseModel):
+    email: EmailStr
+    password_hash: str
+    first_name: str
+    last_name: str
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserCreate(UserBase):
+    pass
+
+
+class UserResponse(BaseModel):
+    id: int
+    email: EmailStr
+    first_name: str
+    last_name: str
+    model_config = ConfigDict(from_attributes=True)
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
     model_config = ConfigDict(from_attributes=True)
