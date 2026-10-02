@@ -64,7 +64,6 @@ async def delete_user(user_data: Dict = Security(get_current_user), db: Session 
     token = user_data["token"]
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    blacklist.add(token)
     db.delete(user)
     db.commit()
     return {"message": "User deleted"}

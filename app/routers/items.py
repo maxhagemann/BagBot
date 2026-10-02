@@ -28,7 +28,7 @@ async def add_item(item: ItemCreate, db: Session = Depends(get_db)):
     # Save to PostgreSQL
     db.commit()
 
-    # Load generated fields (id)
+    # Load generated fields (id), may change this if there's a more effienct way
     db.refresh(db_item)
 
     return db_item

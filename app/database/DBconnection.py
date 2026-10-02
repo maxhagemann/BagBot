@@ -7,8 +7,6 @@ from sqlalchemy.orm import Session
 from .config import settings
 
 
-
-
 DATABASE_URL = (
     f"postgresql+psycopg://"
     f"{settings.postgres_user}:{settings.postgres_password}"

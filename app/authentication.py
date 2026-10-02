@@ -21,8 +21,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/users/token")
 
-blacklist = set()
-
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(
         password.encode("utf-8"),
@@ -44,7 +42,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
 
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
+        detail="Session expired, please sign in again",
         headers={"WWW-Authenticate": "Bearer"},
     )
 
@@ -54,12 +52,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
         if email is None:
             raise credentials_exception
         token_data = TokenData(email=email)
-        if token in blacklist:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token - revoked",
-                headers={"WWW-Authenticate": "Bearer"},
-            )
     except InvalidTokenError:
         raise credentials_exception
     user = get_user(token_data.email, db)
