@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/max/BagBot/frontend/app/page.jsx"],"sourcesContent":["import LikeButton from './like-button';\n \nfunction Header({ title }) {\n  return <h1>{title ? title : 'Default title'}</h1>;\n}\n \nexport default function HomePage() {\n  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];\n \n  return (\n    <div>\n      <Header title=\"Develop. Preview. Ship.\" />\n      <ul>\n        {names.map((name) => (\n          <li key={name}>{name}</li>\n        ))}\n      </ul>\n      <LikeButton />\n    </div>\n  );\n}"],"names":["Header","title","HomePage","names","map","name","LikeButton"],"mappings":";;;;;;;;;;;;AAEA,SAASA,OAAO,EAAEC,KAAK,EAAE;IACvB,qBAAO,8OAAC;kBAAIA,QAAQA,QAAQ;;;;;;AAC9B;AAEe,SAASC;IACtB,MAAMC,QAAQ;QAAC;QAAgB;QAAgB;KAAoB;IAEnE,qBACE,8OAAC;;0BACC,8OAACH;gBAAOC,OAAM;;;;;;0BACd,8OAAC;0BACEE,MAAMC,GAAG,CAAC,CAACC,qBACV,8OAAC;kCAAeA;uBAAPA;;;;;;;;;;0BAGb,8OAACC;;;;;;;;;;;AAGP"}}]
+}
