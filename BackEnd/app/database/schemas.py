@@ -24,6 +24,8 @@ class ItemCreate(ItemBase):
 
 class ItemRead(ItemBase):
     id: int
+    name: str
+    price: Decimal
     model_config = ConfigDict(from_attributes=True)
 
 
